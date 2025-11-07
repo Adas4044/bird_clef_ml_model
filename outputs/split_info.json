@@ -1,0 +1,7 @@
+{
+    "train_size": 80875,
+    "test_size": 20219,
+    "n_features": 160,
+    "n_classes": 206,
+    "test_ratio": 0.2
+}
