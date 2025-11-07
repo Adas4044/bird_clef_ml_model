@@ -1,10 +1,3 @@
-"""
-Audio preprocessing module for BirdClef-2025
-Based on paper methodology:
-- Resample to 32 kHz
-- Truncate/pad to 15 seconds
-"""
-
 import librosa
 import numpy as np
 from pathlib import Path
@@ -16,7 +9,6 @@ import os
 from multiprocessing import Pool, cpu_count
 from functools import partial
 
-#warning suppression
 warnings.filterwarnings('ignore')
 os.environ['PYTHONWARNINGS'] = 'ignore'
 
@@ -38,11 +30,11 @@ class AudioPreprocessor:
         self.silence_threshold = silence_threshold
 
         print(f"AudioPreprocessor initialized:")
-        print(f"  Target sample rate: {self.target_sr} Hz")
-        print(f"  Target duration: {self.target_duration} seconds")
-        print(f"  Target samples: {self.target_samples}")
-        print(f"  Chunking: {'Enabled (split long files)' if use_chunking else 'Disabled (truncate)'}")
-        print(f"  Silence filtering: {'Enabled (RMS < ' + str(silence_threshold) + ')' if use_chunking else 'Disabled'}")
+        print(f"Target sample rate: {self.target_sr} Hz")
+        print(f"Target duration: {self.target_duration} seconds")
+        print(f"Target samples: {self.target_samples}")
+        print(f"Chunking: {'Enabled (split long files)' if use_chunking else 'Disabled (truncate)'}")
+        print(f"Silence filtering: {'Enabled (RMS < ' + str(silence_threshold) + ')' if use_chunking else 'Disabled'}")
         if self.extra_audio_dir and self.extra_audio_dir.exists():
             print(f"  Extra audio directory: {self.extra_audio_dir}")
 
@@ -201,21 +193,21 @@ class AudioPreprocessor:
         dur_orig = librosa.get_duration(y=y_orig, sr=sr_orig)
 
         print(f"Original:")
-        print(f"  Sample rate: {sr_orig} Hz")
-        print(f"  Duration: {dur_orig:.2f}s")
-        print(f"  Samples: {len(y_orig)}")
+        print(f"Sample rate: {sr_orig} Hz")
+        print(f"Duration: {dur_orig:.2f}s")
+        print(f"Samples: {len(y_orig)}")
 
         y_processed = self.preprocess(filename)
 
         print(f"\nProcessed:")
-        print(f"  Sample rate: {self.target_sr} Hz")
-        print(f"  Duration: {len(y_processed) / self.target_sr:.2f}s")
-        print(f"  Samples: {len(y_processed)}")
+        print(f"Sample rate: {self.target_sr} Hz")
+        print(f"Duration: {len(y_processed) / self.target_sr:.2f}s")
+        print(f"Samples: {len(y_processed)}")
 
         print(f"\nValidation:")
-        print(f"  Sample rate matches target: {self.target_sr} Hz")
-        print(f"  Duration matches target: {self.target_duration}s")
-        print(f"  Samples match target: {self.target_samples}")
+        print(f"Sample rate matches target: {self.target_sr} Hz")
+        print(f"Duration matches target: {self.target_duration}s")
+        print(f"Samples match target: {self.target_samples}")
 
         return {
             'original_sr': sr_orig,
