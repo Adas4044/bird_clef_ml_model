@@ -63,7 +63,7 @@ class BirdClassifier:
                 print(f"Linear SVM Classifier initialized (C={C}, max_iter={max_iter})")
                 
             else:
-                #traditional kernel SVM (slower but is more flexible)
+                #traditional kernel SVM
                 kernel = kwargs.get('kernel', 'rbf')
                 C = kwargs.get('C', 1.0)
                 gamma = kwargs.get('gamma', 'scale')
